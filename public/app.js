@@ -15,51 +15,38 @@ function cargarProductos() {
 
   const productosHtml = productos.map((producto,i) => {
     return (
-      `
+    `
       <div class="imagen">
             <img src="${producto.image}" alt="${producto.descripcion}" />
-            <h3>${producto.name}</h3>
+            <h3>${producto.nombre}</h3>
             <h3>$${producto.precio}</h3>
-            <a class="agregar-carrito carro${i}" href="#">Agregar al carrito</a>
-            <input type="hidden" value="15" />
-        </div>
+            <a class="agregar-carrito carro${i+1}" href="#">Agregar al carrito</a>
+          </div>
         `
     )
 
   })
   if(container) {
-    container.innerHTML+= productosHtml.toString()
-
+    container.innerHTML+= productosHtml.toString().replace(',','');
+    agregarCarritoAcciones();
   }
 
 }
-/*let productos = [
-  {
-    nombre: "Camiseta Gris",
-    etiqueta: "camisetagris",
-    precio: 15,
-    enCarro: 0,
-  },
-  {
-    nombre: "Canguro Gris",
-    etiqueta: "cangurogris",
-    precio: 20,
-    enCarro: 0,
-  },
-  {
-    nombre: "Camiseta Negra",
-    etiqueta: "camisetanegra",
-    precio: 10,
-    enCarro: 0,
-  },
-  {
-    nombre: "Canguro Negro",
-    etiqueta: "canguronegro",
-    precio: 25,
-    enCarro: 0,
-  },
-];
-*/
+
+function agregarCarritoAcciones() {
+  const hoverProducto = document.getElementsByClassName("imagen");
+  let agregarCarritos = document.querySelectorAll(".agregar-carrito");
+  console.log(hoverProducto);
+ 
+  for (let i=0; i< hoverProducto.length; i++) {
+          hoverProducto[i].addEventListener('mouseover',()=>{
+            console.log("por arriba carritos");
+            agregarCarritos[i].classList.add('verAgregarCarro')
+          })
+  }
+}
+
+
 
 for (let i = 0; i < agregarCarritos.length; i++) {
   //lop a traves de los productos para el boton agregar carrito agrega evento click
