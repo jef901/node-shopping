@@ -1,0 +1,162 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+  }
+  
+  header {
+    background-image: url("images/cover.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    position: relative;
+  }
+  /* el nav va por encima del header por eso posicion absoluta 0 0 y z-index 2 */
+  nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 50px 60px 0 60px;
+  }
+  nav li {
+    list-style: none;
+    display: inline-block;
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+  nav li span {
+    padding-left: 5px;
+  }
+  li a {
+    padding: 5px;
+    background-color: #fff;
+    text-decoration: none;
+  }
+  .carrito ion-icon {
+    vertical-align: bottom;
+    font-size: 20px;
+    padding-right: 5px;
+  }
+  .carrito a {
+    background-color: royalblue;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  .container,
+  .producto-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    padding-bottom: 100px;
+  }
+  .imagen {
+    margin-right: 20px;
+    margin-left: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+  .agregar-carrito {
+    position: absolute;
+    width: 100%;
+    background-color: darkgrey;
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    cursor: pointer;
+    text-align: center;
+  }
+  .imagen:hover .carro1,
+  .imagen:hover .carro2,
+  .imagen:hover .carro3,
+  .imagen:hover .carro4 {
+    bottom: 50px;
+    opacity: 1;
+    padding: 10px;
+    text-decoration: none;
+  }
+  
+  /*----CARRITO DE COMPRAS----*/
+  
+  .producto-container {
+    max-width: 650px;
+    justify-self: space-around;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+  .producto-container ion-icon {
+    font-size: 25px;
+    color: blue;
+    margin-left: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  
+  .producto-header {
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 4px solid lightgray;
+    margin: 0 auto;
+  }
+  .producto-titulo {
+    width: 45%;
+  }
+  .precio {
+    width: 15%;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+  }
+  .cantidad {
+    width: 30%;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+  }
+  
+  .producto {
+    width: 45%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid lightgray;
+  }
+  .producto img {
+    width: 75px;
+  }
+  
+  .mostrar-productos {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  .total {
+    width: 0%;
+    border-bottom: 1px solid lightgray;
+    display: flex;
+    align-items: center;
+  }
+  .totalContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 10px 0;
+  }
+  .totalTitulo {
+    width: 30%;
+  }
+  .canastaTotal {
+    width: 10%;
+  }
+  
