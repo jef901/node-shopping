@@ -73,11 +73,7 @@
     cursor: pointer;
     text-align: center;
   }
-  /*
-  .imagen:hover .carro1,
-  .imagen:hover .carro2,
-  .imagen:hover .carro3,
-  .imagen:hover .carro4 {*/
+  
   .verAgregarCarro {
     bottom: 50px;
     opacity: 1;

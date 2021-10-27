@@ -38,16 +38,23 @@ function agregarCarritoAcciones() {
   let agregarCarritos = document.querySelectorAll(".agregar-carrito");
   console.log(hoverProducto);
  
-  for (let i=0; i< hoverProducto.length; i++) {
+           for (let i=0; i< hoverProducto.length; i++) {
           hoverProducto[i].addEventListener('mouseover',()=>{
-            console.log("por arriba carritos");
-            agregarCarritos[i].classList.add('verAgregarCarro')
+             agregarCarritos[i].classList.add('verAgregarCarro')
           })
-  }
-}
+          hoverProducto[i].addEventListener('mouseout',()=>{
+            agregarCarritos[i].classList.remove('verAgregarCarro')
+          })
+        }
+        for (let i=0; i< hoverProducto.length; i++) {
+          agregarCarritos[i].addEventListener('click',()=>{
+            carritoCantidad(productos[i]);
+            costoTotal(productos[i]);
+          })
+      }
+    }   
 
-
-
+/*
 for (let i = 0; i < agregarCarritos.length; i++) {
   //lop a traves de los productos para el boton agregar carrito agrega evento click
   agregarCarritos[i].addEventListener("click", () => {
@@ -55,7 +62,7 @@ for (let i = 0; i < agregarCarritos.length; i++) {
     costoTotal(productos[i]);
   });
 }
-
+*/
 function cargandocarritoCantidad() {
   //si el navegador se cierra carga de nuevo la cantidad de  productos
   cantidadProductos = localStorage.getItem("carritoCantidad");
