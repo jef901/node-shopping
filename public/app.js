@@ -1,23 +1,26 @@
-let agregarCarritos = document.querySelectorAll(".agregar-carrito");
+let agregarCarritos = document.querySelectorAll(".agregar-carrito"); //se selecciona todos banner de agregar carrito
 
 let productos = [];
 
-async function obtenerProductos() {
-  const respuesta = await axios.get('http://localhost:5000/productos');
+//uso de axios para cargar productgos, por algunos errores que vi en desarrollo me parece que axios usa en el fondo XMLHttpRequest
+async function obtenerProductos() { //notar que la funcion usa async ya que axios es asincronico tiene un await
+  const respuesta = await axios.get('http://localhost:5000/productos'); // Aca uso axios podria se tambien fetch para cargar productos
   console.log(respuesta.data);
-  productos = respuesta.data.productos;
-  cargarProductos();
+  productos = respuesta.data.productos; //como vimos en clase los produtos vienen en data se cargan en la varible productos es un array
+  cargarProductos(); //se llama a la funcion cargar productos para verlos en index.hbs  
 }
-obtenerProductos();
+obtenerProductos(); // se llama a la funcion para cargar los productos del archivo a traves de axios
 
-function cargarProductos() {
-  const container = document.querySelector('.container');
+function cargarProductos() { //carga los datos en index.hbs
+  const container = document.querySelector('.container'); //busca la clase container en index.hbs para mostrar los productos
 
-  const productosHtml = productos.map((producto,i) => {
+   //cargamos en html los productos en la pagina recorriendolos en vez de con foreach con la funcion map incluida en los array
+  const productosHtml = productos.map((producto,i) => { //reotrna un los productos en un "card" por cada producto
     return (
+      //Aqui se mezcla html mas javascript se usan comillas simples
     `
       <div class="imagen">
-            <img src="${producto.image}" alt="${producto.descripcion}" />
+            <img src="${producto.image}" alt="${producto.descripcion}" /> 
             <h3>${producto.nombre}</h3>
             <h3>$${producto.precio}</h3>
             <a class="agregar-carrito carro${i+1}" href="#">Agregar al carrito</a>
@@ -26,29 +29,30 @@ function cargarProductos() {
     )
 
   })
-  if(container) {
-    container.innerHTML+= productosHtml.toString().replace(',','');
-    agregarCarritoAcciones();
+  if(container) { //si hay un container en index supuestamente lo hay se agrega el html
+    container.innerHTML+= productosHtml.toString().replace(',',''); //productonHTML de array to string se llena index.hbs con los productos
+    agregarCarritoAcciones(); //se agregan las acciones para ver agregar a carrito la funcion esta abajo 
   }
 
 }
 
+//se agregan las acciones a las cards o sea a los productos
 function agregarCarritoAcciones() {
-  const hoverProducto = document.getElementsByClassName("imagen");
+  const hoverProducto = document.getElementsByClassName("imagen"); //obtiene todas las cards que tiene clase imagen
   let agregarCarritos = document.querySelectorAll(".agregar-carrito");
   console.log(hoverProducto);
  
-           for (let i=0; i< hoverProducto.length; i++) {
-          hoverProducto[i].addEventListener('mouseover',()=>{
-             agregarCarritos[i].classList.add('verAgregarCarro')
+           for (let i=0; i< hoverProducto.length; i++) { //for loop entre todos los productos
+          hoverProducto[i].addEventListener('mouseover',()=>{  //se agrega un mouse over sobre las cards par ver banner agregar al carrito
+             agregarCarritos[i].classList.add('verAgregarCarro') //cuando se pasa el mouse por arriba se agrega la clase
           })
-          hoverProducto[i].addEventListener('mouseout',()=>{
+          hoverProducto[i].addEventListener('mouseout',()=>{//cuando sale de la card se borra la clase y desaparece el banner
             agregarCarritos[i].classList.remove('verAgregarCarro')
           })
         }
-        for (let i=0; i< hoverProducto.length; i++) {
-          agregarCarritos[i].addEventListener('click',()=>{
-            carritoCantidad(productos[i]);
+        for (let i=0; i< hoverProducto.length; i++) { //otro loop para agregar el evento click que lo selecciona y lo agrega
+          agregarCarritos[i].addEventListener('click',()=>{ //cuando se hace click se llama a la funciones
+            carritoCantidad(productos[i]); //se aumenta cantidad de productos con
             costoTotal(productos[i]);
           })
       }
@@ -125,6 +129,7 @@ function costoTotal(producto) {
   }
 }
 
+//para ver carrito se obtiene datos del carrito guardados en localStorage que esta en formato JSON y se tranforma en string
 function verCarrito() {
   let articulosDelCarrito = localStorage.getItem("prodEnCarrito");
   let costoCarro = localStorage.getItem("totalCost");
@@ -187,7 +192,7 @@ function borrarProdCarrito() {
       //  remueve un elemento del array de objetos
       delete prodEnCarrito[nombreProducto];
       localStorage.setItem("prodEnCarrito", JSON.stringify(prodEnCarrito));
-
+//luego de borrado se muestra carrito nuevamente
       verCarrito();
       cargandocarritoCantidad();
     });

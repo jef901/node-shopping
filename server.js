@@ -21,7 +21,7 @@ app.get("/carrito",(req,res)=>{
 */
 //middleware deriba resolucion de rutas al directorio routes
 app.use("/",require("./routes/paginas"))
-app.use("/productos",require("./routes/productos"))
+app.use("/productos",require("./routes/productos")) //cuando llamamos procutos vamos a la ruta productos
 
 
 

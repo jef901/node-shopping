@@ -1,5 +1,5 @@
 const express = require("express");
-const { productoControl } = require("../controllers/productosControl");
+const { productoControl } = require("../controllers/productosControl"); //se importa el controlador
 
 const router = express.Router();
 
